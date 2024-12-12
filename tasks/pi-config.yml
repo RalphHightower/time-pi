@@ -1,0 +1,29 @@
+---
+- name: Configure overlays for i226 and GPS compatibility.
+  ansible.builtin.lineinfile:
+    dest: /boot/firmware/config.txt
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  register: modify_boot_config
+  with_items:
+    - regexp: '^dtoverlay=pciex1-compat'
+      line: dtoverlay=pciex1-compat-pi5,mmio-hi
+    - regexp: '^dtparam=uart0'
+      line: dtparam=uart0=on
+
+# TODO: This is not working currently. Remove that option if present.
+- name: Ensure serial port is available for GPS.
+  ansible.builtin.replace:
+    path: /boot/firmware/cmdline.txt
+    regexp: '^([\w](?!.*\b{{ item }}\b).*)$'
+    replace: '\1'
+  register: modify_cmdline_txt
+  with_items:
+    - "console=serial0,115200"
+
+- name: Reboot if boot config was changed.
+  ansible.builtin.reboot:
+  when: >
+    modify_boot_config is changed
+    or modify_cmdline_txt is changed

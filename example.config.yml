@@ -1,0 +1,8 @@
+---
+# Refclock to be used as a time source.
+# See: https://chrony-project.org/doc/3.4/chrony.conf.html#refclock
+chrony_refclock: "refclock SHM 0 refid GPS"
+
+# Hosts allowed to query chrony for NTP time.
+# See: https://chrony-project.org/doc/3.4/chrony.conf.html#allow
+chrony_allow: "10.0.2.0/24"

@@ -1,0 +1,12 @@
+---
+- name: Configure time pi.
+  hosts: all
+  become: true
+
+  vars_files: ['config.yml']
+
+  tasks:
+    - ansible.builtin.include_tasks: tasks/pi-config.yml
+    - ansible.builtin.include_tasks: tasks/gps.yml
+    - ansible.builtin.include_tasks: tasks/chrony.yml
+    - ansible.builtin.include_tasks: tasks/ptp.yml

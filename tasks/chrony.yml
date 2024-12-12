@@ -1,0 +1,13 @@
+---
+- name: Install GPS prerequisites.
+  ansible.builtin.apt:
+    name: chrony
+    state: present
+
+# TODO: `sudo systemctl start chrony`
+# TODO: `sudo systemctl enable chrony`
+
+# TODO: /etc/chrony/chrony.conf - any configurations in there?
+
+# TODO: Create /etc/chrony/conf.d/allow.conf from template
+# TODO: Create /etc/chrony/conf.d/refclock.conf from template

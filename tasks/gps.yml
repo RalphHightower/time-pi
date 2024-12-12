@@ -1,0 +1,14 @@
+---
+- name: Install GPS prerequisites.
+  ansible.builtin.apt:
+    name:
+      - gpsd
+      - gps-clients
+    state: present
+
+# TODO: Configure gpsd - edit `/etc/default/gpsd` and set these options:
+# DEVICES="/dev/ttyAMA0"
+# GPSD_OPTIONS="-s 115200 -n"
+
+# TODO: `sudo systemctl restart gpsd` if config changed
+# TODO: `sudo systemctl enable gpsd`
