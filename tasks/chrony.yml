@@ -1,13 +1,21 @@
 ---
-- name: Install GPS prerequisites.
+- name: Install chrony prerequisites.
   ansible.builtin.apt:
     name: chrony
     state: present
 
-# TODO: `sudo systemctl start chrony`
-# TODO: `sudo systemctl enable chrony`
+- name: Customize chrony configuration.
+  ansible.builtin.template:
+    src: "templates/{{ item }}.j2"
+    dest: "/etc/chrony/conf.d/{{ item }}"
+    mode: 0644
+  notify: restart chrony
+  with_items:
+    - allow.conf
+    - refclock.conf
 
-# TODO: /etc/chrony/chrony.conf - any configurations in there?
-
-# TODO: Create /etc/chrony/conf.d/allow.conf from template
-# TODO: Create /etc/chrony/conf.d/refclock.conf from template
+- name: Ensure chrony is running.
+  ansible.builtin.service:
+    name: chrony
+    state: started
+    enabled: true

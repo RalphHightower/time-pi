@@ -3,12 +3,24 @@
   ansible.builtin.apt:
     name:
       - gpsd
-      - gps-clients
+      - gpsd-clients
     state: present
 
-# TODO: Configure gpsd - edit `/etc/default/gpsd` and set these options:
-# DEVICES="/dev/ttyAMA0"
-# GPSD_OPTIONS="-s 115200 -n"
+- name: Configure gpsd.
+  ansible.builtin.lineinfile:
+    dest: /etc/default/gpsd
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  notify: restart gpsd
+  with_items:
+    - regexp: '^DEVICES='
+      line: 'DEVICES="{{ gpsd_devices }}"'
+    - regexp: '^GPSD_OPTIONS='
+      line: 'GPSD_OPTIONS="{{ gpsd_options }}"'
 
-# TODO: `sudo systemctl restart gpsd` if config changed
-# TODO: `sudo systemctl enable gpsd`
+- name: Ensure gpsd is running.
+  ansible.builtin.service:
+    name: gpsd
+    state: started
+    enabled: true

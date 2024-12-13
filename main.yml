@@ -5,6 +5,17 @@
 
   vars_files: ['config.yml']
 
+  handlers:
+    - name: restart chrony
+      ansible.builtin.service:
+        name: chrony
+        state: restarted
+
+    - name: restart gpsd
+      ansible.builtin.service:
+        name: gpsd
+        state: restarted
+
   tasks:
     - ansible.builtin.include_tasks: tasks/pi-config.yml
     - ansible.builtin.include_tasks: tasks/gps.yml

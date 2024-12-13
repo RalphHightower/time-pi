@@ -1,3 +1,6 @@
 ---
+gpsd_devices: "/dev/ttyAMA0"
+gpsd_options: "-s 115200 -n"
+
 chrony_refclock: "refclock SHM 0 refid GPS"
 chrony_allow: "10.0.2.0/24"
