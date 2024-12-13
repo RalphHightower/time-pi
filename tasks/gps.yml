@@ -12,7 +12,7 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: present
-  notify: restart gpsd
+  notify: Restart gpsd
   with_items:
     - regexp: '^DEVICES='
       line: 'DEVICES="{{ gpsd_devices }}"'

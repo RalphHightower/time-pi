@@ -6,18 +6,25 @@
   vars_files: ['config.yml']
 
   handlers:
-    - name: restart chrony
+    - name: Restart chrony
       ansible.builtin.service:
         name: chrony
         state: restarted
 
-    - name: restart gpsd
+    - name: Restart gpsd
       ansible.builtin.service:
         name: gpsd
         state: restarted
 
   tasks:
-    - ansible.builtin.include_tasks: tasks/pi-config.yml
-    - ansible.builtin.include_tasks: tasks/gps.yml
-    - ansible.builtin.include_tasks: tasks/chrony.yml
-    - ansible.builtin.include_tasks: tasks/ptp.yml
+    - name: Configure Raspberry Pi settings.
+      ansible.builtin.include_tasks: tasks/pi-config.yml
+
+    - name: Configure GPS.
+      ansible.builtin.include_tasks: tasks/gps.yml
+
+    - name: Configure chrony.
+      ansible.builtin.include_tasks: tasks/chrony.yml
+
+    - name: Configure PTP.
+      ansible.builtin.include_tasks: tasks/ptp.yml
