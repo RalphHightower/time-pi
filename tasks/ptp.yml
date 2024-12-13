@@ -4,18 +4,6 @@
     name: linuxptp
     state: present
 
-# TODO: Set up NIC as grandmaster.
+# TODO: Set up NIC as grandmaster, configure phc2sys, and set up testptp
+# See: https://github.com/geerlingguy/time-pi/issues/1
 # sudo ptp4l -i eth1 -m
-
-# TODO: Install testptp
-# See: https://github.com/opencomputeproject/Time-Appliance-Project/tree/master/Incubation/Software/testptp
-# sudo testptp -d /dev/ptp0 -L2,0
-# sudo testptp -d /dev/ptp0 -e -1
-
-# TODO: Alt testptp
-# $ wget https://raw.githubusercontent.com/raspberrypi/linux/refs/heads/rpi-6.6.y/tools/testing/selftests/ptp/testptp.c
-# $ gcc -Wall -lrt testptp.c -o testptp
-# $ sudo ./testptp -d /dev/ptp0 -L0,2
-# set pin function okay
-# $ sudo ./testptp -d /dev/ptp0 -p 1000000000
-# periodic output request okay
