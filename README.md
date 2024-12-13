@@ -1,5 +1,7 @@
 # Time Pi
 
+[![CI](https://github.com/geerlingguy/time-pi/actions/workflows/ci.yml/badge.svg)](https://github.com/geerlingguy/time-pi/actions/workflows/ci.yml)
+
 TODO: Fancy picture goes here.
 
 A Raspberry Pi stratum 1 time server.
