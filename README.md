@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/geerlingguy/time-pi/actions/workflows/ci.yml/badge.svg)](https://github.com/geerlingguy/time-pi/actions/workflows/ci.yml)
 
-TODO: Fancy picture goes here.
+<p align="center"><img alt="Raspberry Pi 5 with TimeHAT V2" src="/resources/time-pi.jpeg" height="auto" width="600"></p>
 
 A Raspberry Pi stratum 1 time server.
 
@@ -18,15 +18,17 @@ To run a decent time server (with high accuracy), you need a few things:
   - A high quality time source (GPS is most commonly used these days)
   - A network adapter capable of hardware timestamping (Intel and ASIX make some good NICs for time-related applications)
 
-For my own hardware configuration—which is the only one I've tested this repository with so far, I am using:
+There are many options for each of the above items—for example, many use [Adafruit's Ultimate GPS HAT](https://www.adafruit.com/product/2324) or its [USB equivalent](https://www.adafruit.com/product/4279) for GPS acquisition, and for PTP, you can use a Compute Module 4 or 5's built-in NIC (with [PPS in or out](https://www.jeffgeerling.com/blog/2022/ptp-and-ieee-1588-hardware-timestamping-on-raspberry-pi-cm4)), or add on a compatible NIC on the Pi 5 with something like the [uPCIty Lite](https://amzn.to/4iUn9ke).
+
+My own hardware configuration—which is the basis for the code in this repository, consists of:
 
   - Computer: Raspberry Pi 5 model B
   - Time source: u-blox ZED-F9T-00B-01 (installed on [TimeHAT V2](https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/674))
   - NIC: Intel i226-LM (installed on [TimeHAT V2](https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/674))
 
-GPS also requires a decent antenna with as clear a view of the sky as possible, to establish a precise GPS lock. Some GPS receivers are better than others, when it comes to timing accuracy, but almost any (even USB receivers) will do better than NTP!
+A precise GPS signal for nanosecond-accurate time requires a decent antenna with as clear a view of the sky as possible. Some GPS receivers are better than others, but even USB receivers will do better than NTP!
 
-I'm using a small [active GPS antenna](https://amzn.to/4gdhBj1), but for permanent installation it is best to mount a quality GPS antenna outside, clear of obstructions.
+I use a small [active GPS antenna](https://amzn.to/4gdhBj1) for testing, but for permanent installation it is best to mount a [higher-quality GPS antenna](https://www.meinbergglobal.com/english/products/gps-glonass-l1-antenna.htm) outside, clear of obstructions.
 
 ### Software
 
