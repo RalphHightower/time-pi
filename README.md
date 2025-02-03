@@ -23,8 +23,8 @@ There are many options for each of the above items—for example, many use [Adaf
 My own hardware configuration—which is the basis for the code in this repository, consists of:
 
   - Computer: Raspberry Pi 5 model B
-  - Time source: u-blox ZED-F9T-00B-01 (installed on [TimeHAT V2](https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/674))
-  - NIC: Intel i226-LM (installed on [TimeHAT V2](https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/674))
+  - Time source: u-blox ZED-F9T-00B-01 (installed on [TimeHAT V4](https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/674))
+  - NIC: Intel i226-LM (installed on [TimeHAT V4](https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/674))
 
 A precise GPS signal for nanosecond-accurate time requires a decent antenna with as clear a view of the sky as possible. Some GPS receivers are better than others, but even USB receivers will do better than NTP!
 
