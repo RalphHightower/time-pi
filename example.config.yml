@@ -10,3 +10,7 @@ chrony_refclock: "refclock SHM 0 refid GPS"
 # Hosts allowed to query chrony for NTP time.
 # See: https://chrony-project.org/doc/3.4/chrony.conf.html#allow
 chrony_allow: "10.0.2.0/24"
+
+# Force i226 eth1 interface to 1 Gbps speed.
+# See: https://github.com/geerlingguy/time-pi/issues/2
+i226_force_1gbps: true

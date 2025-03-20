@@ -32,7 +32,10 @@ I use a small [active GPS antenna](https://amzn.to/4gdhBj1) for testing, but for
 
 ### Software
 
-Make sure you have Ansible installed. Copy the `example.hosts.ini` file to `hosts.ini` and customize it so Ansible can connect to your Pi.
+Make sure you have Ansible installed. Copy the following example files and customize them according to your setup:
+
+  - `example.hosts.ini` to `hosts.ini`
+  - `example.config.yml` to `config.yml`
 
 Because I can't quite get `cmdline.txt` changes automated the way I like, _manually_ edit `/boot/firmware/cmdline.txt` and remove the portion `console=serial0,115200`, so GPS can use the serial port.
 

@@ -1,0 +1,7 @@
+#!/bin/sh
+# {{ ansible_managed }}
+
+if [ "$IFACE" = eth1 ]; then
+    # Force 1 Gbps connection speed on eth1
+    /sbin/ethtool -s eth1 autoneg on speed 1000 duplex full
+fi

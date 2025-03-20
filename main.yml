@@ -16,9 +16,18 @@
         name: gpsd
         state: restarted
 
+    - name: Restart NetworkManager
+      ansible.builtin.service:
+        name: NetworkManager
+        state: restarted
+
   tasks:
     - name: Configure Raspberry Pi settings.
       ansible.builtin.include_tasks: tasks/pi-config.yml
+
+    - name: Configure i226 Ethernet interface.
+      ansible.builtin.include_tasks: tasks/i226.yml
+      when: i226_force_1gbps
 
     - name: Configure GPS.
       ansible.builtin.include_tasks: tasks/gps.yml
