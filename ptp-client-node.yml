@@ -1,0 +1,12 @@
+---
+- name: Configure client node.
+  hosts: client
+  become: true
+
+  vars_files: ['config.yml']
+
+  tasks:
+    - name: Install linuxptp.
+      ansible.builtin.apt:
+        name: linuxptp
+        state: present

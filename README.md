@@ -76,6 +76,12 @@ ntpdate -q [ip of grandmaster]
 
 Much of the work that went into this project was documented in [this thread on the TimeHat v2](https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/674).
 
+## Slave / Client Setup
+
+For PTP, you need to install and configure PTP for Linux on slave/client machines, and synchronize them to the master/server node as well.
+
+An example configuration for a slave/client node is set up in `ptp-client-node.yml`, and further examples may be provided in the future.
+
 ## License
 
 GPLv3 or Later
