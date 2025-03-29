@@ -94,6 +94,10 @@ An example configuration for a slave/client node is set up in `ptp-client-node.y
   - [Andreas Spiess: NTP Server from GPS Satellites](https://www.youtube.com/watch?v=RKRN4p0gobk)
   - [Jeff Geerling: Time Card mini for GPS and OXCO on Pi](Time Card mini adds Pi, GPS, and OCXO to your PC)
 
+## Other Time Resources I found Interesting
+
+  - [Where does my computer get the time from?](https://dotat.at/@/2023-05-26-whence-time.html) (good overview of the sources of modern NTP + GPS time, with the history of each source)
+
 ## License
 
 GPLv3 or Later
