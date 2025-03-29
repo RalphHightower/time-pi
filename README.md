@@ -89,6 +89,7 @@ An example configuration for a slave/client node is set up in `ptp-client-node.y
 
 ## Other Hobbyist Time Servers
 
+  - [LeapSecond.com](http://www.leapsecond.com)
   - [Austin's Nerdy Things: Nanosecond accurate PTP Pi server](https://austinsnerdythings.com/2025/02/18/nanosecond-accurate-ptp-server-grandmaster-and-client-tutorial-for-raspberry-pi/)
   - [Andreas Spiess: NTP Server from GPS Satellites](https://www.youtube.com/watch?v=RKRN4p0gobk)
   - [Jeff Geerling: Time Card mini for GPS and OXCO on Pi](Time Card mini adds Pi, GPS, and OCXO to your PC)
