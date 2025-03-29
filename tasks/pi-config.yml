@@ -12,12 +12,11 @@
     - regexp: '^dtparam=uart0'
       line: dtparam=uart0=on
 
-# TODO: This is not working currently. Remove that option if present.
 - name: Ensure serial port is available for GPS.
   ansible.builtin.replace:
     path: /boot/firmware/cmdline.txt
-    regexp: '^([\w](?!.*\b{{ item }}\b).*)$'
-    replace: '\1'
+    regexp: '^(.*)\b({{ item }})\b(\s+)?(.*)$'
+    replace: '\1 \4'
   register: modify_cmdline_txt
   with_items:
     - "console=serial0,115200"
