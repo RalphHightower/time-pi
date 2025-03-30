@@ -37,8 +37,6 @@ Make sure you have Ansible installed. Copy the following example files and custo
   - `example.hosts.ini` to `hosts.ini`
   - `example.config.yml` to `config.yml`
 
-Because I can't quite get `cmdline.txt` changes automated the way I like, _manually_ edit `/boot/firmware/cmdline.txt` and remove the portion `console=serial0,115200`, so GPS can use the serial port.
-
 Now run the Ansible playbook:
 
 ```
