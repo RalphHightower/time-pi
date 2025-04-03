@@ -8,9 +8,9 @@
   register: modify_boot_config
   with_items:
     - regexp: '^dtoverlay=pciex1-compat'
-      line: dtoverlay=pciex1-compat-pi5,mmio-hi
+      line: "dtoverlay=pciex1-compat-pi5,mmio-hi"
     - regexp: '^dtparam=uart0'
-      line: dtparam=uart0=on
+      line: "dtparam=uart0=on"
 
 - name: Ensure serial port is available for GPS.
   ansible.builtin.replace:

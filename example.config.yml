@@ -1,7 +1,7 @@
 ---
 # GPSd configuration.
 gpsd_devices: "/dev/ttyAMA0"
-gpsd_options: "-s 115200 -n"
+gpsd_options: "-s 38400 -n"
 
 # Refclock to be used as a time source.
 # See: https://chrony-project.org/doc/3.4/chrony.conf.html#refclock
