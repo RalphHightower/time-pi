@@ -51,6 +51,38 @@ This playbook will configure:
 
 > **Intel i226 Notes**: Currently I can't get the i226 to work with DHCP at all, so I have to manually set an IP address using `nmtui`. It also [doesn't work at 2.5 Gbps currently](https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/674#issuecomment-2533117275), and it can't be overridden via Linux, so I make sure to plug it into a 1 Gbps port on my network.
 
+## GPS Notes
+
+Using u-blox GPS modules, you may encounter a baud rate mismatch. Many of the u-blox modules default to `38400` baud, but this project recommends `115200` baud for slightly faster timing updates.
+
+```
+# Get the protocol version ('PROTVER')
+ubxtool -p MON-VER
+...
+UBX-MON-VER:
+  swVersion EXT CORE 4.04 (7f89f7)
+  hwVersion 00190000
+  extension ROM BASE 0x118B2060
+  extension FWVER=SPG 4.04
+  extension PROTVER=32.01
+...
+
+# Set the version in ubxtool options
+export UBXOPTS="-P 32.01"
+
+# Set the baud rate to 115200
+ubxtool -S 115200
+
+# Persist the setting
+ubxtool -p SAVE
+```
+
+**KNOWN ISSUE**: The baud setting is currently not persisting across reboots. See [this GitHub issue](https://github.com/geerlingguy/time-pi/issues/11) for updates.
+
+`ubxtool` is installed as part of the `gpsd-clients` package, which is automatically installed by this playbook.
+
+For more on how to set the baud rate (or tweak other GPS module parameters), see [millerjs.org's ubxtool page](https://wiki.millerjs.org/ubxtool) and the [ubxtool examples](https://gpsd.io/ubxtool-examples.html) page.
+
 ## Usage
 
 Some handy commands:
