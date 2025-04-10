@@ -1,7 +1,8 @@
 ---
 # GPSd configuration.
 gpsd_devices: "/dev/ttyAMA0"
-gpsd_options: "-s 38400 -n"
+gpsd_baud: "115200"
+gpsd_options: "-s 115200 -n"
 
 # Refclock to be used as a time source.
 # See: https://chrony-project.org/doc/3.4/chrony.conf.html#refclock
@@ -15,3 +16,27 @@ chrony_allow: "10.0.2.0/24"
 # Force i226 eth1 interface to 1 Gbps speed.
 # See: https://github.com/geerlingguy/time-pi/issues/2
 i226_force_1gbps: true
+
+# PTP 4 Linux options.
+ptp4l_ptp_iface: eth1
+ptp4l_service_state: started
+ptp4l_service_enabled: true
+
+ts2phc_service_state: started
+ts2phc_service_enabled: true
+ts2phc_logging_level: 7
+ts2phc_clock: '/dev/ptp0'
+ts2phc_source: 'generic'
+ts2phc_extra_opts: '-m'
+
+# Intel IGC driver has a bug - rising and falling edges are always used,
+# therefore we need to overrided a couple settings to lock sync.
+# See: https://github.com/geerlingguy/time-pi/issues/13
+ts2phc_extts_polarity: both
+ts2phc_pulsewidth: 100000000
+
+phc2sys_service_state: started
+phc2sys_service_enabled: true
+phc2sys_clock: 'CLOCK_REALTIME'
+phc2sys_source: '/dev/ptp0'
+phc2sys_extra_opts: '-O 37 -m'

@@ -1,0 +1,30 @@
+---
+- name: Restart chrony
+  ansible.builtin.service:
+    name: chrony
+    state: restarted
+
+- name: Restart gpsd
+  ansible.builtin.service:
+    name: gpsd
+    state: restarted
+
+- name: Restart NetworkManager
+  ansible.builtin.service:
+    name: NetworkManager
+    state: restarted
+
+- name: Restart ptp4l
+  ansible.builtin.service:
+    name: ptp4l
+    state: restarted
+
+- name: Restart ts2phc
+  ansible.builtin.service:
+    name: ts2phc
+    state: restarted
+
+- name: Restart phc2sys
+  ansible.builtin.service:
+    name: phc2sys
+    state: restarted
