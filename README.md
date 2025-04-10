@@ -83,7 +83,7 @@ ubxtool -p SAVE
 
 For more on how to set the baud rate (or tweak other GPS module parameters), see [millerjs.org's ubxtool page](https://wiki.millerjs.org/ubxtool) and the [ubxtool examples](https://gpsd.io/ubxtool-examples.html) page.
 
-## Usage
+## Usage and Debugging
 
 Some handy commands:
 
@@ -113,6 +113,31 @@ sudo phc_ctl eth1 cmp  # should be nearly -37000000000ns
 ```
 
 Much of the work that went into this project was documented in [this thread on the TimeHat v2](https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/674).
+
+## GPS / GNSS Module debugging
+
+Like cellular modems, GPS modules can be a bit tricky, using arcane syntaxes and custom protocols for communication.
+
+For the NEO-M9N module, the default `baud` rate is a little low for my liking, but to get it working, I had to go through a lengthy process learning `ubxtool`.
+
+To configure my module for `115200` baud, I did the following:
+
+```
+# Set the baud rate
+ubxtool -S 115200
+
+# Save the settings (get the `-P` PROTVER with `ubxtool -p MON-VER`)
+$ ubxtool -p SAVE -P 32.01
+
+# Update the rate in your GPSd config and restart `gpsd`
+sudo nano /etc/default/gpsd
+sudo systemctl restart gpsd
+
+# Test the settings by rebooting the GPS module manually.
+$ ubxtool -p COLDBOOT -P 32.01
+```
+
+See this issue for more: [Debug NEO-M9N module on TimeHAT V2](https://github.com/geerlingguy/time-pi/issues/11).
 
 ## Slave / Client Setup
 
