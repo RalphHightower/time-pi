@@ -98,7 +98,7 @@ ethtool -T eth0  # or eth1, lists hardware clock info
 
 # Chrony debugging
 chronyc sources -v  # shows sources with documentation of fields
-chronyc -n tracking  # shows detailed timing data
+chronyc tracking  # shows detailed timing data
 
 # Check on NTP service from another computer
 ntpdate -q [ip of grandmaster]
@@ -107,6 +107,9 @@ ntpdate -q [ip of grandmaster]
 wget https://tsn.readthedocs.io/_downloads/f329e8dec804247b1dbb5835bd949e6f/check_clocks.c
 gcc -o check_clocks check_clocks.c
 sudo ./check_clocks -d eth0  # or eth1 (the interface you're using for PTP)
+
+# Check offset between NIC PHY and system clock
+sudo phc_ctl eth1 cmp  # should be nearly -37000000000ns
 ```
 
 Much of the work that went into this project was documented in [this thread on the TimeHat v2](https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/674).
