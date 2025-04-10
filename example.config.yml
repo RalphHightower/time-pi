@@ -5,7 +5,8 @@ gpsd_options: "-s 38400 -n"
 
 # Refclock to be used as a time source.
 # See: https://chrony-project.org/doc/3.4/chrony.conf.html#refclock
-chrony_refclock: "refclock SHM 0 refid GPS"
+chrony_refclock: "refclock PHC /dev/ptp0 poll 0 dpoll -5 tai"  # Use NIC PHC
+# chrony_refclock: "refclock SHM 0 refid GPS"  # Use GPS directly
 
 # Hosts allowed to query chrony for NTP time.
 # See: https://chrony-project.org/doc/3.4/chrony.conf.html#allow
