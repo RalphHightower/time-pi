@@ -3,6 +3,13 @@
   ansible.builtin.apt:
     name: linuxptp
     state: present
+  when: not ptp4l_version_latest
+
+- name: Install latest linuxptp version from jclark.
+  ansible.builtin.apt:
+    deb: https://github.com/jclark/rpi-cm4-ptp-guide/raw/refs/heads/main/files/linuxptp/linuxptp_4.2-1~bpo12+1_arm64.deb
+    state: present
+  when: ptp4l_version_latest
 
 - name: Copy ts2phc systemd unit file into place.
   ansible.builtin.template:

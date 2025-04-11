@@ -8,7 +8,7 @@ A Raspberry Pi stratum 1 time server.
 
 Takes in GPS (or potentially other stratum 0 time sources), spits out NTP, PTP, etc.
 
-## Setup
+## Setup - Grandmaster
 
 ### Hardware
 
@@ -50,6 +50,18 @@ This playbook will configure:
   - [Linux PTP](https://linuxptp.nwtime.org): synchronize the system clock to the NIC PHC (Physical Hardware Clock), and set up the Pi as a PTP grandmaster clock
 
 > **Intel i226 Notes**: Currently I can't get the i226 to work with DHCP at all, so I have to manually set an IP address using `nmtui`. It also [doesn't work at 2.5 Gbps currently](https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/674#issuecomment-2533117275), and it can't be overridden via Linux, so I make sure to plug it into a 1 Gbps port on my network.
+
+## Setup - Client Pis
+
+For client Pis, make sure you have them listed under a `[clients]` heading in your `hosts.ini` file, then run the Ansible playbook:
+
+```
+ansible-playbook ptp-clients.yml
+```
+
+This should configure the clients to acquire PTP time from the grandmaster Pi.
+
+> **Note**: This playbook is still under active development. See [Issue #1](https://github.com/geerlingguy/time-pi/issues/1) for the latest.
 
 ## GPS Notes
 

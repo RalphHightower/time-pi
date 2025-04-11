@@ -1,6 +1,6 @@
 ---
-- name: Configure client node.
-  hosts: client
+- name: Configure client nodes.
+  hosts: clients
   become: true
 
   vars_files: ['config.yml']

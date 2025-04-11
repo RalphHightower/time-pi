@@ -24,3 +24,7 @@
     name: gpsd
     state: started
     enabled: true
+
+# TODO: sudo ln -s /dev/ttyAMA0 /dev/ttyS10
+- name: TODO - Add script to symlink /dev/ttyAMA0 to /dev/ttyS10 at boot
+  meta: noop

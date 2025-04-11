@@ -7,7 +7,13 @@
 
   handlers:
     - name: Include various service handlers.
-      ansible.builtin.include_tasks: handlers/main.yml
+      ansible.builtin.import_tasks: handlers/main.yml
+
+  pre_tasks:
+    - name: Update apt cache.
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 1800
 
   tasks:
     - name: Configure Raspberry Pi settings.
