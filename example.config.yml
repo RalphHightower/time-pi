@@ -1,8 +1,10 @@
 ---
 # GPSd configuration.
+gpsd_state: stopped
+gpsd_enabled: false
 gpsd_devices: "/dev/ttyAMA0"
 gpsd_baud: "115200"
-gpsd_options: "-s 115200 -n"
+gpsd_options: "-s {{ gpsd_baud }} -n"
 
 # Refclock to be used as a time source.
 # See: https://chrony-project.org/doc/3.4/chrony.conf.html#refclock

@@ -19,11 +19,11 @@
     - regexp: '^GPSD_OPTIONS='
       line: 'GPSD_OPTIONS="{{ gpsd_options }}"'
 
-- name: Ensure gpsd is running.
+- name: Configure gpsd service.
   ansible.builtin.service:
     name: gpsd
-    state: started
-    enabled: true
+    state: "{{ gpsd_state }}"
+    enabled: "{{ gpsd_enabled }}"
 
 # TODO: sudo ln -s /dev/ttyAMA0 /dev/ttyS10
 - name: TODO - Add script to symlink /dev/ttyAMA0 to /dev/ttyS10 at boot
