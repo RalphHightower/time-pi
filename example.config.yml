@@ -15,7 +15,9 @@ chrony_refclock: |
 
   # Uncomment to use GPS module directly as time source.
   refclock SHM 0 refid NMEA precision 1e-3 poll 0 filter 3
-  refclock PPS /dev/pps0 refid PPS lock NMEA poll 3 trust
+
+  # Uncomment to use PPS source (e.g. GPS PPS to GPIO pin 18)
+  #refclock PPS /dev/pps0 refid PPS lock NMEA poll 3 trust
 
   # Uncomment to log timing statistics.
   #log tracking measurements statistics
