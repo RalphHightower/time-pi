@@ -8,8 +8,17 @@ gpsd_options: "-s {{ gpsd_baud }} -n"
 
 # Refclock to be used as a time source.
 # See: https://chrony-project.org/doc/3.4/chrony.conf.html#refclock
-chrony_refclock: "refclock PHC /dev/ptp0 poll 0 dpoll -5 tai"  # Use NIC PHC
-# chrony_refclock: "refclock SHM 0 refid GPS"  # Use GPS directly
+# See also: https://austinsnerdythings.com/2025/02/14/revisiting-microsecond-accurate-ntp-for-raspberry-pi-with-gps-pps-in-2025/
+chrony_refclock: |
+  # Uncomment to use NIC's PHC as time source.
+  # refclock PHC /dev/ptp0 poll 0 dpoll -5 tai  # Use NIC's PHC
+
+  # Uncomment to use GPS module directly as time source.
+  refclock SHM 0 refid NMEA precision 1e-3 poll 0 filter 3
+  refclock PPS /dev/pps0 refid PPS lock NMEA poll 3 trust
+
+  # Uncomment to log timing statistics.
+  log tracking measurements statistics
 
 # Hosts allowed to query chrony for NTP time.
 # See: https://chrony-project.org/doc/3.4/chrony.conf.html#allow
