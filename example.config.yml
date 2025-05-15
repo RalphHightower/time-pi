@@ -18,7 +18,7 @@ chrony_refclock: |
   refclock PPS /dev/pps0 refid PPS lock NMEA poll 3 trust
 
   # Uncomment to log timing statistics.
-  log tracking measurements statistics
+  #log tracking measurements statistics
 
 # Hosts allowed to query chrony for NTP time.
 # See: https://chrony-project.org/doc/3.4/chrony.conf.html#allow
