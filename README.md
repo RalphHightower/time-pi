@@ -163,6 +163,7 @@ An example configuration for a slave/client node is set up in `ptp-client-node.y
   - [Austin's Nerdy Things: Nanosecond accurate PTP Pi server](https://austinsnerdythings.com/2025/02/18/nanosecond-accurate-ptp-server-grandmaster-and-client-tutorial-for-raspberry-pi/)
   - [Andreas Spiess: NTP Server from GPS Satellites](https://www.youtube.com/watch?v=RKRN4p0gobk)
   - [Time-Card-Flex CM4 and CM5 with OCP-TAP Time Card](https://github.com/regymm/Time-Card-Flex/blob/0637ed49693192d11c7df9ac883c444ce62d2b25/DOC/Setup-and-Usage.md)
+  - [Conor Robinson's Raspberry Pi NTP Server](https://conorrobinson.ie/raspberry-pi-ntp-server-part-6/)
   - [Jeff Geerling: Time Card mini for GPS and OXCO on Pi](Time Card mini adds Pi, GPS, and OCXO to your PC)
   - [Raspberry Pi 5 Stratum 1 NTP Server with Uptronics GPS HAT](https://github.com/tiagofreire-pt/rpi_uputronics_stratum1_chrony/)
 
