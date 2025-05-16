@@ -159,7 +159,6 @@ An example configuration for a slave/client node is set up in `ptp-client-node.y
 
 ## Other Hobbyist Time Servers and Pi Time Builds
 
-  - [LeapSecond.com](http://www.leapsecond.com)
   - [Austin's Nerdy Things: Nanosecond accurate PTP Pi server](https://austinsnerdythings.com/2025/02/18/nanosecond-accurate-ptp-server-grandmaster-and-client-tutorial-for-raspberry-pi/)
   - [Austin's Nerdy Things: Microsecond Accurate NTP for Raspberry Pi with GPS PPS](https://austinsnerdythings.com/2025/02/14/revisiting-microsecond-accurate-ntp-for-raspberry-pi-with-gps-pps-in-2025/)
   - [Andreas Spiess: NTP Server from GPS Satellites](https://www.youtube.com/watch?v=RKRN4p0gobk)
@@ -170,6 +169,8 @@ An example configuration for a slave/client node is set up in `ptp-client-node.y
 
 ## Other Time Resources I found Interesting
 
+  - [LeapSecond.com](http://www.leapsecond.com) (great resources for timing nerds)
+  - [Time-Nuts Mailing List](http://www.leapsecond.com/time-nuts.htm) (for amateurs who are interested in precise Time & Frequency)
   - [Where does my computer get the time from?](https://dotat.at/@/2023-05-26-whence-time.html) (good overview of the sources of modern NTP + GPS time, with the history of each source)
 
 ## License
