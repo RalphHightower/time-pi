@@ -63,9 +63,9 @@ This should configure the clients to acquire PTP time from the grandmaster Pi.
 
 > **Note**: This playbook is still under active development. See [Issue #1](https://github.com/geerlingguy/time-pi/issues/1) for the latest.
 
-## GPS Notes
+## GPS / GNSS Notes
 
-Using u-blox GPS modules, you may encounter a baud rate mismatch. Many of the u-blox modules default to `38400` baud, but this project recommends `115200` baud for slightly faster timing updates.
+Using u-blox GPS modules, you may encounter a baud rate mismatch. Many newer u-blox modules default to `38400` baud, while older modules default to `9600` baud. This project recommends `115200` baud for slightly faster timing updates.
 
 ```
 # Get the protocol version ('PROTVER')
@@ -86,14 +86,19 @@ export UBXOPTS="-P 32.01"
 ubxtool -S 115200
 
 # Persist the setting
-ubxtool -p SAVE
-```
+ubxtool -p SAVE -P 32.01
+ubxtool -p COLDBOOT -P 32.01
 
-**KNOWN ISSUE**: The baud setting is currently not persisting across reboots. See [this GitHub issue](https://github.com/geerlingguy/time-pi/issues/11) for updates.
+# If running GPSd, update the rate gpsd's config and restart gpsd
+sudo nano /etc/default/gpsd
+sudo systemctl restart gpsd
+```
 
 `ubxtool` is installed as part of the `gpsd-clients` package, which is automatically installed by this playbook.
 
-For more on how to set the baud rate (or tweak other GPS module parameters), see [millerjs.org's ubxtool page](https://wiki.millerjs.org/ubxtool) and the [ubxtool examples](https://gpsd.io/ubxtool-examples.html) page.
+For more on how to set the baud rate (or tweak other GPS module parameters), see [millerjs.org's ubxtool page](https://wiki.millerjs.org/ubxtool) and the [ubxtool examples](https://gpsd.io/ubxtool-examples.html) page. You can also configure most options via `pygpsclient` using a GUI.
+
+See this issue for more: [Debug NEO-M9N module on TimeHAT V2](https://github.com/geerlingguy/time-pi/issues/11).
 
 ## Usage and Debugging
 
@@ -126,31 +131,6 @@ sudo phc_ctl eth1 cmp  # should be nearly -37000000000ns
 
 Much of the work that went into this project was documented in [this thread on the TimeHat v2](https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/674).
 
-## GPS / GNSS Module debugging
-
-Like cellular modems, GPS modules can be a bit tricky, using arcane syntaxes and custom protocols for communication.
-
-For the NEO-M9N module, the default `baud` rate is a little low for my liking, but to get it working, I had to go through a lengthy process learning `ubxtool`.
-
-To configure my module for `115200` baud, I did the following:
-
-```
-# Set the baud rate
-ubxtool -S 115200
-
-# Save the settings (get the `-P` PROTVER with `ubxtool -p MON-VER`)
-$ ubxtool -p SAVE -P 32.01
-
-# Update the rate in your GPSd config and restart `gpsd`
-sudo nano /etc/default/gpsd
-sudo systemctl restart gpsd
-
-# Test the settings by rebooting the GPS module manually.
-$ ubxtool -p COLDBOOT -P 32.01
-```
-
-See this issue for more: [Debug NEO-M9N module on TimeHAT V2](https://github.com/geerlingguy/time-pi/issues/11).
-
 ## Slave / Client Setup
 
 For PTP, you need to install and configure PTP for Linux on slave/client machines, and synchronize them to the master/server node as well.
@@ -172,6 +152,7 @@ An example configuration for a slave/client node is set up in `ptp-client-node.y
   - [LeapSecond.com](http://www.leapsecond.com) (great resources for timing nerds)
   - [Time-Nuts Mailing List](http://www.leapsecond.com/time-nuts.htm) (for amateurs who are interested in precise Time & Frequency)
   - [Where does my computer get the time from?](https://dotat.at/@/2023-05-26-whence-time.html) (good overview of the sources of modern NTP + GPS time, with the history of each source)
+  - [Satpulse time server architecture](https://satpulse.net/2025/05/21/time-server-architecture.html) (System clock vs PHC vs NIC, and how time is transferred internally and through PTP and NTP)
 
 ## License
 
